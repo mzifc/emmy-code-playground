@@ -28,7 +28,7 @@ public class Microwave_TeleOp extends LinearOpMode {
         armLeft = hardwareMap.servo.get("armLeft");
         armRight = hardwareMap.servo.get("armRight);
 
-        clawAngler = hardwareMap.servo.get("clawAngler");
+        clawWrist = hardwareMap.servo.get("clawWrist");
         clawGripper = hardwareMap.servo.get("clawGripper");
 
         // reversing right motor!
