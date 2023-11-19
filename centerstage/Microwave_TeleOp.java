@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 // created by ME Zifchak - updated 7/7/23 15:59:56
 
-public class TestPID extends LinearOpMode {
+public class Microwave_TeleOp extends LinearOpMode {
     // ex version has velocity measurements
     DcMotorEx motor, slidesLeft, slidesRight;
     
@@ -24,6 +24,12 @@ public class TestPID extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         slidesLeft = hardwareMap.get(DcMotorEx.class, "slidesLeft");
         slidesRight = hardwareMap.get(DcMotorEx.class, "slidesRight");
+
+        armLeft = hardwareMap.servo.get("armLeft");
+        armRight = hardwareMap.servo.get("armRight);
+
+        clawAngler = hardwareMap.servo.get("clawAngler");
+        clawGripper = hardwareMap.servo.get("clawGripper");
 
         // reversing right motor!
         slidesRight.setDirection(DcMotorEx.Direction.REVERSE);
@@ -47,6 +53,19 @@ public class TestPID extends LinearOpMode {
         
         // loop that runs while the program is running
         while (opModeIsActive()) {
+
+            /* thomas aperture example
+            while(opmodeisactive()) {
+                double slideMotorTargetPos = ...;
+                if(buttonPressed) {
+                    anglerServo.setPosition(x);
+                    armServo.setPosition(y);
+                    slideMotorTargetPos = z;
+                }
+                double power = slideMotorPID.run(slideMotor.getCurrentPosition-slideMotorTargetPos)
+                slideMotor.setPower(power);
+            }
+            */
 
             if (gamepad1.x){ targetPosition = GROUND_POSITION; }
             else if (gamepad1.y){ targetPosition = HIGH_POSITION;}
