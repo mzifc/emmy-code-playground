@@ -104,7 +104,6 @@ public class Microwave_TeleOp extends LinearOpMode {
             if (gamepad2.right_bumper) {
                targetPosition = GROUND_POSITION; 
             }
-
             // (dpad right) manual open claw
             if (gamepad2.dpad_right) {
                 clawGripper.setPosition(0.2); // open
