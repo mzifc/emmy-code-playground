@@ -102,19 +102,24 @@ public class Microwave_TeleOp extends LinearOpMode {
 
             // (right bumper) hanging position
             if (gamepad2.right_bumper) {
-               targetPosition = GROUND_POSITION; }
+               targetPosition = GROUND_POSITION; 
+            }
 
             // (dpad right) manual open claw
             if (gamepad2.dpad_right) {
-                clawGripper.setPosition(0.2); } // open 
+                clawGripper.setPosition(0.2); // open
+            }
             // (dpad left) manual close claw
             else if (gamepad2.dpad_left) {
-                clawGripper.setPosition(1); } // closed
+                clawGripper.setPosition(1); // closed
+            }
             // (dpad up) manual move wrist up
             else if (gamepad2.dpad_up) {
-                clawWrist.setPower(0.5); }
+                clawWrist.setPower(0.5); 
+            }
             // (dpad down) manual move wrist down
-                clawWrist.setPower(-0.5); }
+                clawWrist.setPower(-0.5); 
+            }
             else {
                 clawWrist.setPower(0); }
             
