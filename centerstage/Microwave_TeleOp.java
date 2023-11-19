@@ -67,10 +67,56 @@ public class Microwave_TeleOp extends LinearOpMode {
             }
             */
 
-            if (gamepad1.x){ targetPosition = GROUND_POSITION; }
-            else if (gamepad1.y){ targetPosition = HIGH_POSITION;}
-            else if (gamepad1.b){ targetPosition = MID_POSITION;}
-            else if (gamepad1.a){ targetPosition = LOW_POSITION;}
+            // (x) pick up position
+            if (gamepad2.x){ 
+                targetPosition = GROUND_POSITION;
+                    armRight.setPosition(x);
+                    armLeft.setPosition(x);
+                clawWrist.setPosition(y);
+                clawGripper.setPosition(0.2); // open position
+            }
+            // (a) low scoring position
+            else if (gamepad2.a){ 
+                targetPosition = LOW_POSITION;
+                    armRight.setPosition(x);
+                    armLeft.setPosition(x);
+                clawWrist.setPosition(y);
+                clawGripper.setPosition(0.2); // open position
+            }
+            // (b) medium scoring position
+            else if (gamepad2.b){ 
+                targetPosition = MID_POSITION;
+                    armRight.setPosition(x);
+                    armLeft.setPosition(x);
+                clawWrist.setPosition(y);
+                clawGripper.setPosition(0.2); // open position
+            }
+            // (y) high scoring position
+            else if (gamepad2.y){ 
+                targetPosition = LOW_POSITION;
+                    armRight.setPosition(x);
+                    armLeft.setPosition(x);
+                clawWrist.setPosition(y);
+                clawGripper.setPosition(0.2); // open position
+            }
+
+            // (right bumper) hanging position
+            if (gamepad2.right_bumper) {
+               targetPosition = GROUND_POSITION; }
+
+            // (dpad right) manual open claw
+            if (gamepad2.dpad_right) {
+                clawGripper.setPosition(0.2); } // open 
+            // (dpad left) manual close claw
+            else if (gamepad2.dpad_left) {
+                clawGripper.setPosition(1); } // closed
+            // (dpad up) manual move wrist up
+            else if (gamepad2.dpad_up) {
+                clawWrist.setPower(0.5); }
+            // (dpad down) manual move wrist down
+                clawWrist.setPower(-0.5); }
+            else {
+                clawWrist.setPower(0); }
             
             // silly slides telemetry
             telemetry.addData("Left Slides", slidesLeft.getCurrentPosition());
