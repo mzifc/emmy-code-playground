@@ -25,8 +25,7 @@ public class Microwave_TeleOp extends LinearOpMode {
         slidesLeft = hardwareMap.get(DcMotorEx.class, "slidesLeft");
         slidesRight = hardwareMap.get(DcMotorEx.class, "slidesRight");
 
-        armLeft = hardwareMap.servo.get("armLeft");
-        armRight = hardwareMap.servo.get("armRight);
+        armMotor = hardwareMap.get(DcMotorEx.class, "armMotor");
 
         clawWrist = hardwareMap.servo.get("clawWrist");
         clawGripper = hardwareMap.servo.get("clawGripper");
@@ -37,19 +36,23 @@ public class Microwave_TeleOp extends LinearOpMode {
         // uses breaking to slow the motor down faster
         slidesLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         slidesRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         
         // disables velocity control but not encoder from counter
         slidesLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         slidesRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         waitForStart();
 
         // position in tick cxwedw3s where we want the motor to run to
         int targetPosition = 0;
 
-        int GROUND_POSITION = 0;
-        int HIGH_POSITION = 3;
-        int MID_POSITION = 2;
-        int LOW_POSITION = -50;
+        int armGround = 0;
+        int slideGround = 0;
+        int armLow = 1;
+        int armMid = 2;
+        int armHigh = 3;
+        int slidesHigh = 3;
         
         // loop that runs while the program is running
         while (opModeIsActive()) {
